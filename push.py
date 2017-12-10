@@ -5,13 +5,13 @@ import smtplib
 gpio_pin_number=18
 pulse_last=0
  
-server = smtplib.SMTP('smtp.gmail.com', 587)
-server.starttls()
-server.login("XXXXXXXX@gmail.com", "XXXXXXX")
+# server = smtplib.SMTP('smtp.gmail.com', 587)
+# server.starttls()
+# server.login("XXXXXXXX@gmail.com", "XXXXXXX")
  
-msg = "YOUR MESSAGE!"
-server.sendmail("XXXXXXX@gmail.com", "XXXXXXXXXX", msg)
-server.quit()
+# msg = "YOUR MESSAGE!"
+# server.sendmail("XXXXXXX@gmail.com", "XXXXXXXXXX", msg)
+# server.quit()
 
 GPIO.setmode(GPIO.BCM)
 
@@ -22,11 +22,12 @@ try:
         pulse_start = time.time()
         GPIO.wait_for_edge(gpio_pin_number, GPIO.FALLING)        
         pulse_end = time.time()
-        print('Button Pressed')
+        print('Button Pressed') 
+        print(pulse_end - pulse_last) 
 
-        if pulse_end - pulse_last > 50:
+        if pulse_end - pulse_last > 0.50:
             print('-> Single Click')
-        else
+        else:
             print('-> Doble Click')
             
 
